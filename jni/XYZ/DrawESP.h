@@ -408,7 +408,7 @@ void NewDrawESP(ImDrawList *draw, float screenWidth, float screenHeight) {
     
     auto m_BattleBridge = *(uintptr_t *) ((uintptr_t)BattleData_m_BattleBridge);
     if (!m_BattleBridge) return;
-    auto bStartBattle = *(bool *) ((uintptr_t)m_BattleBridge + BattleBridge_bStartBattle());
+    auto bStartBattle = BattleBridge_bStartBattle((void *)m_BattleBridge);
     if (!bStartBattle) return;
     DroneView();
     

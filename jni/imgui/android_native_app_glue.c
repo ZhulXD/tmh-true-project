@@ -1,4 +1,5 @@
 #include <jni.h>
+#include <stdlib.h>
 
 #include <errno.h>
 #include <string.h>
@@ -423,3 +424,4 @@ void ANativeActivity_onCreate(ANativeActivity* activity,
 
     activity->instance = android_app_create(activity, savedState, savedStateSize);
 }
+

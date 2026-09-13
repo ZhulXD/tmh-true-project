@@ -40,7 +40,7 @@ void RenderESP(ImDrawList *draw, int screenWidth, int screenHeight) {
     void *BattleBridge_Instance, *BattleManager_Instance, *LogicBattleManager_Instance;
     Il2CppGetStaticFieldValue("Assembly-CSharp.dll", "", "BattleData", "m_BattleBridge", &BattleBridge_Instance);
     if (BattleBridge_Instance) {
-        auto _bStartBattle = *(bool *)((uintptr_t)BattleBridge_Instance + BattleBridge_bStartBattle());
+        auto _bStartBattle = BattleBridge_bStartBattle(BattleBridge_Instance);
         if (_bStartBattle) {
             ImVec2 minimapPosition(minimapPosX, minimapPosY);
             //ImVec2 minimapSize(Config.Map.Size.minimapWidth, Config.Map.Size.minimapHeight);

@@ -85,14 +85,14 @@ uintptr_t Bullet_transform(){
 
 //Class LogicPlayer
 uintptr_t LogicPlayer_KillWildTimes(){
-	return (uintptr_t) Il2CppGetFieldOffset("Assembly-CSharp.dll", "Battle", "LogicPlayer", "_KillWildTimes");
+	return (uintptr_t) Il2CppGetFieldOffset("Assembly-CSharp.dll", "Battle", "LogicPlayer", "KillWildTimes");
 }
 uintptr_t LogicPlayer_m_PlayerData(){
 	return (uintptr_t) Il2CppGetFieldOffset("Assembly-CSharp.dll", "Battle", "LogicPlayer", "m_PlayerData");
 }
 
 #define LogicPlayer_LogicUpdate (uintptr_t) Il2CppGetMethodOffset("Assembly-CSharp.dll", "Battle", "LogicPlayer", "LogicUpdate", 1)
-#define LogicPlayer__QuadraKillTimes (uintptr_t) Il2CppGetFieldOffset("Assembly-CSharp.dll", "Battle", "LogicPlayer", "_QuadraKillTimes")
+#define LogicPlayer__QuadraKillTimes (uintptr_t) Il2CppGetFieldOffset("Assembly-CSharp.dll", "Battle", "LogicPlayer", "QuadraKillTimes")
 
 class Transform {
 public:
@@ -239,15 +239,15 @@ uintptr_t RoomData_bRobot(){
 }
 
 uintptr_t RoomData__steamSimpleName(){
-	return (uintptr_t) Il2CppGetFieldOffset("Assembly-CSharp.dll", "", "SystemData/RoomData", "_steamSimpleName");
+	return (uintptr_t) Il2CppGetFieldOffset("Assembly-CSharp.dll", "SystemData", "RoomData", "sTeamSimpleName");
 }
 
 uintptr_t RoomData__steamName(){
-	return (uintptr_t) Il2CppGetFieldOffset("Assembly-CSharp.dll", "", "SystemData/RoomData", "_steamName");
+	return (uintptr_t) Il2CppGetFieldOffset("Assembly-CSharp.dll", "SystemData", "RoomData", "sTeamName");
 }
 
 uintptr_t RoomData_sName(){
-	return (uintptr_t) Il2CppGetFieldOffset("Assembly-CSharp.dll", "", "SystemData/RoomData", "_sName");
+	return (uintptr_t) Il2CppGetFieldOffset("Assembly-CSharp.dll", "SystemData", "RoomData", "sName");
 }
 
 uintptr_t SystemData_RoomData_iMPLCertifyTime(){
@@ -324,8 +324,15 @@ uintptr_t BattleBridge_ShowHeadEquip(){
 	return (uintptr_t) Il2CppGetMethodOffset("Assembly-CSharp.dll", "", "BattleBridge", "ShowHeadEquip", 3);
 }
 
-uintptr_t BattleBridge_bStartBattle(){
-	return (uintptr_t) Il2CppGetFieldOffset("Assembly-CSharp.dll", "", "BattleBridge", "bStartBattle");
+uintptr_t BattleBridge_get_bStartBattle(){
+	return (uintptr_t) Il2CppGetMethodOffset("Assembly-CSharp.dll", "", "BattleBridge", "get_bStartBattle", 0);
+}
+
+bool BattleBridge_bStartBattle(void *instance){
+	if (!instance) return false;
+	auto fn = reinterpret_cast<bool (*)(void *)>(BattleBridge_get_bStartBattle());
+	if (!fn) return false;
+	return fn(instance);
 }
 
 //--------------------------------> TEST NEW MAPHACK <--------------------------------
@@ -364,11 +371,11 @@ uintptr_t BattleManager_m_dicMonsterShow() {
 
 //Class PlayerData (retri req)
 uintptr_t PlayerData__killNum(){
-	return (uintptr_t) Il2CppGetFieldOffset("Assembly-CSharp.dll", "", "PlayerData", "_killNum");
+	return (uintptr_t) Il2CppGetFieldOffset("Assembly-CSharp.dll", "", "PlayerData", "killNum");
 }
 
 uintptr_t PlayerData__assistNum(){
-	return (uintptr_t) Il2CppGetFieldOffset("Assembly-CSharp.dll", "", "PlayerData", "_assistNum");
+	return (uintptr_t) Il2CppGetFieldOffset("Assembly-CSharp.dll", "", "PlayerData", "assistNum");
 }
 
 //Class ShowEntity
@@ -385,7 +392,7 @@ uintptr_t ShowEntity_getPosition(){
 }
 
 uintptr_t ShowEntity_MoveDir(){
-	return (uintptr_t) Il2CppGetFieldOffset("Assembly-CSharp.dll", "", "ShowEntity", "_MoveDir");
+	return (uintptr_t) Il2CppGetFieldOffset("Assembly-CSharp.dll", "", "ShowEntity", "MoveDir");
 }
 
 uintptr_t ShowEntity_ResetLayer(){
@@ -488,7 +495,7 @@ uintptr_t EntityBase_get_m_Level(){
 #define CoolDownData_GetCoolTime (uintptr_t) Il2CppGetMethodOffset("Assembly-CSharp.dll", "Battle", "CoolDownData", "GetCoolTime")
 
 #define ShowWildMonster_CanSight (uintptr_t) Il2CppGetMethodOffset("Assembly-CSharp.dll", "", "ShowWildMonster", "CanSight", 1)
-#define ShowWildMonster_OnUpdate (uintptr_t) Il2CppGetMethodOffset("Assembly-CSharp.dll", "", "ShowWildMonater", "OnUpdate")
+#define ShowWildMonster_OnUpdate (uintptr_t) Il2CppGetMethodOffset("Assembly-CSharp.dll", "", "ShowWildMonster", "OnUpdate")
 
 //Unlock Skin
 #define LogicFighter_m_SkillComp (uintptr_t) Il2CppGetFieldOffset("Assembly-CSharp.dll", "Battle", "LogicFighter", "m_SkillComp")
@@ -505,7 +512,7 @@ uintptr_t EntityBase_get_m_Level(){
 
 
 #define SkillComponent_m_OwnSkillDic (uintptr_t) Il2CppGetFieldOffset("Assembly-CSharp.dll", "", "SkillComponent", "m_OwnSkillDic")
-#define SkillComponent__iSkillLearn (uintptr_t) Il2CppGetFieldOffset("Assembly-CSharp.dll", "", "SkillComponent", "_iSkillLearn")
+#define SkillComponent__iSkillLearn (uintptr_t) Il2CppGetFieldOffset("Assembly-CSharp.dll", "", "SkillComponent", "iSkillLearn")
 #define SkillComponent_m_ComAtk (uintptr_t) Il2CppGetFieldOffset("Assembly-CSharp.dll", "", "SkillComponent", "m_ComAtk")
 
 #define ShowSyncFighter_get_m_AttkSpeed (uintptr_t) Il2CppGetMethodOffset("Assembly-CSharp.dll", "", "ShowSyncFighter", "get_m_AttkSpeed")
@@ -590,7 +597,7 @@ Dictionary<void*, void*> *get_Monsters(){
 #define AntiCheatReporter_ctor (uintptr_t) Il2CppGetMethodOffset("Assembly-CSharp.dll", "", "AntiCheatReporter", ".ctor")
 #define AntiCheatReporter_cctor (uintptr_t) Il2CppGetMethodOffset("Assembly-CSharp.dll", "", "AntiCheatReporter", ".cctor")
 
-#define TestCase_gp_start_anti_cheat (uintptr_t) Il2CppGetMethodOffset("Assembly-CSharp.dll", "testinterval", "TestCase", "gp_start_anti_cheat")
+#define TestCase_gp_start_anti_cheat (uintptr_t) Il2CppGetMethodOffset("Assembly-CSharp.dll", "testinternal", "TestCase", "gp_start_anti_cheat")
 #define DeviceUtil_GetRefreshRate (uintptr_t) Il2CppGetMethodOffset("Assembly-CSharp.dll", "", "DeviceUtil", "GetRefreshRate")
 #define DeviceUtil_GetIsRoot (uintptr_t) Il2CppGetMethodOffset("Assembly-CSharp.dll", "", "DeviceUtil", "GetIsRoot")
 #define DeviceUtil_OpenURL (uintptr_t) Il2CppGetMethodOffset("UnityEngine.CoreModule.dll", "", "Application", "OpenURL", 1)
@@ -601,7 +608,7 @@ Dictionary<void*, void*> *get_Monsters(){
 #define ShowEntityUpdateEyeLayer (uintptr_t) Il2CppGetMethodOffset("Assembly-CSharp.dll", "", "ShowEntity","UpdateEyeLayer", 3)
 #define ShowEntity_InitSetEye (uintptr_t) Il2CppGetMethodOffset("Assembly-CSharp.dll", "", "ShowEntity","InitSetEye", 2)
 
-#define BattleBridge_OnSignReport (uintptr_t) Il2CppGetMethodOffset("Assembly-CSharp.dll", "", "BattleBridge", "OnSignReport", 8)
+#define BattleBridge_OnSignReport (uintptr_t) Il2CppGetMethodOffset("Assembly-CSharp.dll", "", "BattleBridge", "OnSignReportData", 8)
 #define BattleBridge_SafeSendGameReportData (uintptr_t) Il2CppGetMethodOffset("Assembly-CSharp.dll", "", "BattleBridge", "SafeSendGameReportData", 1)
 #define BattleBridge_SendGameReportData (uintptr_t) Il2CppGetMethodOffset("Assembly-CSharp.dll", "", "BattleBridge", "SendGameReportData", 1)
 #define BattleBridge_SendLargeGameReportData (uintptr_t) Il2CppGetMethodOffset("Assembly-CSharp.dll", "", "BattleBridge", "SendLargeGameReportData", 1)
@@ -621,17 +628,17 @@ Dictionary<void*, void*> *get_Monsters(){
 //--------------------------------> TEST NEW ANTICHEATS <--------------------------------
 //--------------------------------> TEST NEW ANTICHEATS <--------------------------------
 //--------------------------------> TEST NEW ANTICHEATS <--------------------------------
-#define ACInterface_GetTimeOfDay (uintptr_t) Il2CppGetMethodOffset("Assebly-CSharp.dll", "", "ACInterface", "GetTimeOfDay", 4)
-#define ACInterface_GetSystemTime (uintptr_t) Il2CppGetMethodOffset("Assebly-CSharp.dll", "", "ACInterface", "GetSystemTime", 2)
-#define ACInterface_EstimateGetTimeOfDay (uintptr_t) Il2CppGetMethodOffset("Assebly-CSharp.dll", "", "ACInterface", "EstimateGetTimeOfDay", 1)
-#define ACInterface_EstimateGetSystemTime (uintptr_t) Il2CppGetMethodOffset("Assebly-CSharp.dll", "", "ACInterface", "EstimateGetSystemTime", 1)
-#define ACInterface_LoadCert (uintptr_t) Il2CppGetMethodOffset("Assebly-CSharp.dll", "", "ACInterface", "LoadCert", 2)
-#define ACInterface_GetSign (uintptr_t) Il2CppGetMethodOffset("Assebly-CSharp.dll", "", "ACInterface", "GetSign")
-#define ACInterface_ValidateCer (uintptr_t) Il2CppGetMethodOffset("Assebly-CSharp.dll", "", "ACInterface", "ValidateCer", 1)
-#define ACInterface_GetSignMapData (uintptr_t) Il2CppGetMethodOffset("Assebly-CSharp.dll", "", "ACInterface", "GetSignMapData")
-#define ACInterface_SignErrorVerify (uintptr_t) Il2CppGetMethodOffset("Assebly-CSharp.dll", "", "ACInterface", "SignErrorVerify", 2)
-#define ACInterface_CheckHook (uintptr_t) Il2CppGetMethodOffset("Assebly-CSharp.dll", "", "ACInterface", "CheckHook")
-#define ACInterface_GetHeroDefaultSkinMd5 (uintptr_t) Il2CppGetMethodOffset("Assebly-CSharp.dll", "", "ACInterface", "GetHeroDefaultSkinMd5")
+#define ACInterface_GetTimeOfDay (uintptr_t) Il2CppGetMethodOffset("Assembly-CSharp.dll", "", "ACInterface", "EstimateGetTimeOfDay", 1)
+#define ACInterface_GetSystemTime (uintptr_t) Il2CppGetMethodOffset("Assembly-CSharp.dll", "", "ACInterface", "EstimateGetSystemTime", 1)
+#define ACInterface_EstimateGetTimeOfDay (uintptr_t) Il2CppGetMethodOffset("Assembly-CSharp.dll", "", "ACInterface", "EstimateGetTimeOfDay", 1)
+#define ACInterface_EstimateGetSystemTime (uintptr_t) Il2CppGetMethodOffset("Assembly-CSharp.dll", "", "ACInterface", "EstimateGetSystemTime", 1)
+#define ACInterface_LoadCert (uintptr_t) Il2CppGetMethodOffset("Assembly-CSharp.dll", "", "ACInterface", "LoadCert", 2)
+#define ACInterface_GetSign (uintptr_t) Il2CppGetMethodOffset("Assembly-CSharp.dll", "", "ACInterface", "GetSignData")
+#define ACInterface_ValidateCer (uintptr_t) Il2CppGetMethodOffset("Assembly-CSharp.dll", "", "ACInterface", "ValidateCer", 1)
+#define ACInterface_GetSignMapData (uintptr_t) Il2CppGetMethodOffset("Assembly-CSharp.dll", "", "ACInterface", "GetSignMapData")
+#define ACInterface_SignErrorVerify (uintptr_t) Il2CppGetMethodOffset("Assembly-CSharp.dll", "", "ACInterface", "SignErrorVerify", 2)
+#define ACInterface_CheckHook (uintptr_t) Il2CppGetMethodOffset("Assembly-CSharp.dll", "", "ACInterface", "CheckHook")
+#define ACInterface_GetHeroDefaultSkinMd5 (uintptr_t) Il2CppGetMethodOffset("Assembly-CSharp.dll", "", "ACInterface", "GetHeroDefaultSkinMd5")
 
 uintptr_t ShowBattleControl_SetAntiCheatReport(){
 	return (uintptr_t) Il2CppGetMethodOffset("Assembly-CSharp.dll", "", "ShowBattleControl", "SetAntiCheatReport",1);

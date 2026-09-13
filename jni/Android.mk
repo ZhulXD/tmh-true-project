@@ -79,5 +79,9 @@ LOCAL_SRC_FILES := imgui/imgui.cpp    \
                      
 LOCAL_STATIC_LIBRARIES  := libcurl libssl libcrypto libdobby
 
+ifeq ($(TARGET_ARCH_ABI),armeabi-v7a)
+LOCAL_SRC_FILES += Tools/compat_atomic.s
+endif
+
 include $(BUILD_SHARED_LIBRARY)
 

@@ -64,7 +64,7 @@ void loadConfig() {
         close(fd);
 }
 void saveConfig(){
-    int fd = open("/storage/emulated/0/Android/data/com.mobile.legends/tmh.ini", O_WRONLY | O_CREAT);
+    int fd = open("/storage/emulated/0/Android/data/com.mobile.legends/tmh.ini", O_WRONLY | O_CREAT, 0666);
     system("chmod 777 /storage/emulated/0/Android/data/com.mobile.legends/tmh.ini");
     write(fd, &Config , sizeof(Config));
     write(fd, &Aim, sizeof(Aim));
@@ -223,7 +223,11 @@ void DrawMenu() {
     if (!window_scale) window_scale = 1.0f;
     io.FontGlobalScale = window_scale;
 
+#if MOCK_AUTH_BYPASS
+    static bool isLogin = true, isSave = false;
+#else
     static bool isLogin = false, isSave = false;
+#endif
     static char s[64];
     if (isLogin && !isSave) {
         SharedPreferences sharedPref(GetJNIEnv(g_vm), "xyourzone_sharedpref");
@@ -490,3 +494,4 @@ void DrawMenu() {
         ImGui::TreePop();
 	}
 }
+
