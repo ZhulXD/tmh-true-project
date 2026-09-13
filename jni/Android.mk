@@ -58,6 +58,7 @@ LOCAL_SRC_FILES := imgui/imgui.cpp    \
     Tools/Il2Cpp.cpp \
     Tools/Tools.cpp \
     Tools/Login/Tools.cpp \
+    XYZ/AutoUIConfig.cpp \
     KittyMemory/KittyMemory.cpp \
     KittyMemory/MemoryPatch.cpp \
     KittyMemory/MemoryBackup.cpp \

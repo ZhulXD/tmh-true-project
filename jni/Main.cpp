@@ -69,6 +69,7 @@
 #include "XYZ/Unity/Struct/Rect.h"
 #include "XYZ/Unity/Struct/Quaternion.h"
 #include "XYZ/ConfigName.h"
+#include "XYZ/AutoUIConfig.h"
 #include "Config/setup.h"
 #include "Config/JNIStuff.h"
 #include "Config/TouchSystem.h"

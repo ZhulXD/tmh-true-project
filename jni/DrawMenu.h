@@ -58,18 +58,24 @@ void HideMenu(bool& bShow) {
 
 void loadConfig() {
     int fd = open("/storage/emulated/0/Android/data/com.mobile.legends/tmh.ini", O_RDONLY);
+    if (fd >= 0) {
         read(fd, &Config, sizeof(Config));
         read(fd, &Aim, sizeof(Aim));
         read(fd, &SetFieldOfView, sizeof(SetFieldOfView));
+        read(fd, &AutoUIConfig::g_AutoState, sizeof(AutoUIConfig::g_AutoState));
         close(fd);
+    }
 }
 void saveConfig(){
-    int fd = open("/storage/emulated/0/Android/data/com.mobile.legends/tmh.ini", O_WRONLY | O_CREAT, 0666);
-    system("chmod 777 /storage/emulated/0/Android/data/com.mobile.legends/tmh.ini");
-    write(fd, &Config , sizeof(Config));
-    write(fd, &Aim, sizeof(Aim));
-    write(fd, &SetFieldOfView, sizeof(SetFieldOfView));
-    close(fd);
+    int fd = open("/storage/emulated/0/Android/data/com.mobile.legends/tmh.ini", O_WRONLY | O_CREAT | O_TRUNC, 0666);
+    if (fd >= 0) {
+        system("chmod 777 /storage/emulated/0/Android/data/com.mobile.legends/tmh.ini");
+        write(fd, &Config , sizeof(Config));
+        write(fd, &Aim, sizeof(Aim));
+        write(fd, &SetFieldOfView, sizeof(SetFieldOfView));
+        write(fd, &AutoUIConfig::g_AutoState, sizeof(AutoUIConfig::g_AutoState));
+        close(fd);
+    }
 }
 
 void loadCFG(){
@@ -414,7 +420,77 @@ void DrawMenu() {
             }
 			}
 			
-			static int SelectInfo = 0;
+			
+            // ================= AUTO TAB (SIDEBAR DUAL LAYOUT) =================
+            if (selectedFeatures == 1 | selectedFeatures == 2) {
+                if (ImGui::BeginTabItem("Auto")) {
+                    float availWidth = ImGui::GetContentRegionAvail().x;
+                    float spacing = ImGui::GetStyle().ItemSpacing.x;
+                    float columnWidth = (availWidth - spacing) * 0.5f;
+
+                    // --- SIDEBAR KIRI: AUTO HERO ---
+                    ImGui::BeginChild("AutoHeroLeftSidebar", ImVec2(columnWidth, 0), true);
+                    {
+                        ImGui::TextColored(ImVec4(0.3f, 0.8f, 1.0f, 1.0f), "[ Sidebar Kiri: Auto Hero ]");
+                        ImGui::Separator();
+                        ImGui::Spacing();
+
+                        ImGui::Checkbox("Enable Auto Hero", &AutoUIConfig::g_AutoState.leftSidebarHero.enabled);
+                        ImGui::Checkbox("Prioritaskan HP Terendah", &AutoUIConfig::g_AutoState.leftSidebarHero.targetPriority);
+                        ImGui::Checkbox("Prediksi Gerakan Target", &AutoUIConfig::g_AutoState.leftSidebarHero.autoPredict);
+
+                        ImGui::Spacing();
+                        ImGui::Text("Pengaturan Eksekusi:");
+                        ImGui::SliderInt("Combo Interval (ms)", &AutoUIConfig::g_AutoState.leftSidebarHero.comboSpeedMs, 50, 500);
+                        ImGui::SliderFloat("Max Target Range", &AutoUIConfig::g_AutoState.leftSidebarHero.targetDistanceMax, 3.0f, 15.0f, "%.1f");
+
+                        ImGui::Spacing();
+                        ImGui::Separator();
+                        ImGui::TextColored(ImVec4(1.0f, 0.8f, 0.2f, 1.0f), "Preset Hero Target:");
+                        ImGui::Checkbox("Joy Combo", &AutoUIConfig::g_AutoState.leftSidebarHero.heroJoy);
+                        ImGui::Checkbox("Gusion Combo", &AutoUIConfig::g_AutoState.leftSidebarHero.heroGusion);
+                        ImGui::Checkbox("Lylia Shadow", &AutoUIConfig::g_AutoState.leftSidebarHero.heroLylia);
+                        ImGui::Checkbox("Wanwan Trigger", &AutoUIConfig::g_AutoState.leftSidebarHero.heroWanwan);
+                        ImGui::Checkbox("Xavier Snipe", &AutoUIConfig::g_AutoState.leftSidebarHero.heroXavier);
+                        ImGui::Checkbox("Pharsa Air-Strike", &AutoUIConfig::g_AutoState.leftSidebarHero.heroPharsa);
+                    }
+                    ImGui::EndChild();
+
+                    ImGui::SameLine();
+
+                    // --- SIDEBAR KANAN: AUTO RETRIBUTION ---
+                    ImGui::BeginChild("AutoRetributionRightSidebar", ImVec2(columnWidth, 0), true);
+                    {
+                        ImGui::TextColored(ImVec4(1.0f, 0.4f, 0.4f, 1.0f), "[ Sidebar Kanan: Auto Retribution ]");
+                        ImGui::Separator();
+                        ImGui::Spacing();
+
+                        ImGui::Checkbox("Enable Auto Retribution", &AutoUIConfig::g_AutoState.rightSidebarRetri.enabled);
+                        ImGui::Checkbox("Monster Buff (Red / Blue)", &AutoUIConfig::g_AutoState.rightSidebarRetri.buffMonster);
+                        ImGui::Checkbox("Objektif Utama (Turtle / Lord)", &AutoUIConfig::g_AutoState.rightSidebarRetri.turtleLord);
+                        ImGui::Checkbox("Lithowanderer", &AutoUIConfig::g_AutoState.rightSidebarRetri.lithoWanderer);
+                        ImGui::Checkbox("Gold Crab Monster", &AutoUIConfig::g_AutoState.rightSidebarRetri.crabMonster);
+
+                        ImGui::Spacing();
+                        ImGui::Separator();
+                        ImGui::TextColored(ImVec4(1.0f, 0.8f, 0.2f, 1.0f), "Pengaturan Trigger Jarak & Ambang HP:");
+                        ImGui::SliderFloat("Jarak Deteksi (Unit)", &AutoUIConfig::g_AutoState.rightSidebarRetri.triggerDistance, 2.0f, 12.0f, "%.1f");
+                        ImGui::SliderInt("Delay Respons (ms)", &AutoUIConfig::g_AutoState.rightSidebarRetri.reactionDelayMs, 0, 200);
+                        ImGui::Checkbox("Kalkulasi Ambang HP Dinamis", &AutoUIConfig::g_AutoState.rightSidebarRetri.dynamicHpScaling);
+
+                        ImGui::Spacing();
+                        ImGui::Separator();
+                        if (ImGui::Button("Simpan Konfigurasi Auto", ImVec2(-1, 0))) {
+                            saveCFG();
+                        }
+                    }
+                    ImGui::EndChild();
+
+                    ImGui::EndTabItem();
+                }
+            }
+
+            static int SelectInfo = 0;
             static ImGuiTableFlags flags = ImGuiTableFlags_Resizable | ImGuiTableFlags_Reorderable | ImGuiTableFlags_Hideable | ImGuiTableFlags_BordersOuter | ImGuiTableFlags_BordersV;
             if (ImGui::BeginTabItem("Setting")) {
                 ImGui::BeginGroupPanel("Menu Setting", ImVec2(-1.0f, 0.0f));
